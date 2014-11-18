@@ -19,17 +19,37 @@ class Yii2LogPanel extends Yii2DebugPanel
 		$errorCount = 0;
 		$warningCount = 0;
 		$infoCount = 0;
+
+        $firstError = '';
+        $firstWarning = '';
+        $firstInfo = '';
 		foreach ($this->data['messages'] as $log) {
 			$level = $log[1];
-			if ($level == CLogger::LEVEL_ERROR) $errorCount++;
-			elseif ($level == CLogger::LEVEL_WARNING) $warningCount++;
-			elseif ($level == CLogger::LEVEL_INFO) $infoCount++;
+			if ($level == CLogger::LEVEL_ERROR) {
+                $errorCount++;
+                if (empty($firstError)) {
+                    $firstError = $log[0];
+                }
+            } elseif ($level == CLogger::LEVEL_WARNING) {
+                $warningCount++;
+                if (empty($firstWarning)) {
+                    $firstWarning = $log[0];
+                }
+            } elseif ($level == CLogger::LEVEL_INFO) {
+                $infoCount++;
+                if (empty($firstInfo)) {
+                    $firstInfo = $log[0];
+                }
+            }
 		}
 		return $this->render(dirname(__FILE__) . '/../views/panels/log_bar.php', array(
 			'count' => count($this->data['messages']),
 			'errorCount' => $errorCount,
 			'warningCount' => $warningCount,
 			'infoCount' => $infoCount,
+            'firstError' => $firstError,
+            'firstWarning' => $firstWarning,
+            'firstInfo' => $firstInfo,
 		));
 	}
 

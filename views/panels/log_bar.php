@@ -15,17 +15,17 @@ if ($infoCount) $title .= " $infoCount info";
 		Log <span class="label"><?php echo $count; ?></span>
 	</a>
 	<?php if ($errorCount): ?>
-		<a href="<?php echo $this->getUrl(); ?>#first-error" title="<?php echo $title; ?>">
+		<a target="_blank" href="<?php echo $this->getUrl(); ?>#first-error" title="<?php echo $firstError; ?>">
 			<span class="label label-important"><?php echo $errorCount; ?></span>
 		</a>
 	<?php endif; ?>
 	<?php if ($warningCount): ?>
-		<a href="<?php echo $this->getUrl(); ?>#first-warning" title="<?php echo $title; ?>">
+		<a target="_blank" href="<?php echo $this->getUrl(); ?>#first-warning" title="<?php echo $firstWarning; ?>">
 			<span class="label label-warning"><?php echo $warningCount; ?></span>
 		</a>
 	<?php endif; ?>
 	<?php if ($infoCount): ?>
-		<a href="<?php echo $this->getUrl(); ?>#first-info" title="<?php echo $title; ?>">
+		<a target="_blank" href="<?php echo $this->getUrl(); ?>#first-info" title="<?php echo $firstInfo; ?>">
 			<span class="label label-info"><?php echo $infoCount; ?></span>
 		</a>
 	<?php endif; ?>
